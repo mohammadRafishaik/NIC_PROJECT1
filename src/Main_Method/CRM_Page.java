@@ -16,8 +16,11 @@ public class CRM_Page extends Test_Execution_Comman_related_method  {
 		
 		///////////////////Login method//////////////////s
 		CRM_Page.Comman(args);
-		WebDriver d = null;
-		///////////////////Proprties file data reader///////////////
+		Thread.sleep(3000);
+		CRM_Page.LL_Submission();
+		System.out.println("Application as submitted Successfully");
+//		WebDriver d = null;
+//		///////////////////Proprties file data reader///////////////
 		File r=new File("C:\\Users\\USER\\Downloads\\Filehandling.js\\Or.Properties");
 		FileInputStream sr=new FileInputStream(r);
 		Properties prop1=new Properties();

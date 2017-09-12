@@ -2,12 +2,15 @@ package Main_Method;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import com.Filehandling.Frame_Work_Library;
@@ -39,6 +42,7 @@ public class Test_Execution_Comman_related_method extends Scr_for_Script {
 			
 			
 			////////////////// Properties file reader///////////////
+			//Scr_for_Script.properties();
 			
 			File r=new File("C:\\Users\\USER\\Downloads\\Filehandling.js\\Or.Properties");
 			FileInputStream sr=new FileInputStream(r);
@@ -95,7 +99,20 @@ public class Test_Execution_Comman_related_method extends Scr_for_Script {
 		    }
 	
 							
-			
+	}
+	
+public static void LL_Submission() throws IOException, Exception {
+	//WebDriver d = new FirefoxDriver();
+WebDriver d = null;
+	File r=new File("C:\\Users\\USER\\Downloads\\Filehandling.js\\Or.Properties");
+	FileInputStream sr=new FileInputStream(r);
+	Properties prop1=new Properties();
+	prop1.load(sr);
+	WebElement element=d.findElement(By.xpath(prop1.getProperty("State_Name")));
+	
+	Select value=new Select(element);
+	value.selectByValue("Gujarat");
+	d.findElement(By.xpath(prop1.getProperty("name"))).click();
 	
 
 }
