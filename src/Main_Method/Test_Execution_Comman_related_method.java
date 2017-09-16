@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -38,7 +39,7 @@ public class Test_Execution_Comman_related_method extends Scr_for_Script {
 			String ds= "http://45.79.209.142:99/admin/login.html";
 //			String ds1="mohammad.rafi@yitsol.com";
 ////			String ds2="Rafi@1234";
-			String ds1="Application For NewLL";
+			String ds1="New LL Acknowledgement";
 			
 			
 			////////////////// Properties file reader///////////////
@@ -50,7 +51,8 @@ public class Test_Execution_Comman_related_method extends Scr_for_Script {
 			prop1.load(sr);
 			
 			WebDriver r1=new FirefoxDriver();
-			
+			r1.manage().window().maximize();
+			r1.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			//String ds11="http://45.79.209.142:9999/admin/login.html";
 			r1.navigate().to(prop1.getProperty("Url"));
 			Thread.sleep(2000);
@@ -61,7 +63,7 @@ public class Test_Execution_Comman_related_method extends Scr_for_Script {
 			
 			////////////screenshot method calling here  with class name/////////////
 			//Test_Execution scr1=new Test_Execution();
-			//////////////
+					
 			Scr_for_Script.Screenshots(r1, "S4RND HOME PAGE");
 		System.out.println("value	"+r1.getCurrentUrl());
 		
@@ -81,9 +83,88 @@ public class Test_Execution_Comman_related_method extends Scr_for_Script {
 			r1.findElement(By.xpath(prop1.getProperty("New_Submit_Button"))).click();
 			
 			Scr_for_Script.Screenshots(r1, "Application Page");
-			r1.getTitle();
+			//r1.getTitle();
+			//=========================================================================================
+					
+			   ////////////Application filling///////////
+			
+			////////Select State and RTO office from where LL is being applied/////////////////
+			
+			r1.findElement(By.xpath(prop1.getProperty("State_Dw"))).click();
+			Thread.sleep(2000);
+			r1.findElement(By.xpath(prop1.getProperty("State_Up"))).click();
+			Thread.sleep(2000);
 
-			System.out.println("  Title "+	r1.getTitle());
+			r1.findElement(By.id(prop1.getProperty("Rto_Dw"))).click();
+			Thread.sleep(2000);
+
+			r1.findElement(By.xpath(prop1.getProperty("Rto_Barabanki"))).click();
+			Thread.sleep(4000);
+			Scr_for_Script.Screenshots(r1, "State and Rto Page Declaration page");
+
+			///////////////Personal Details//////////////////////////
+			
+r1.findElement(By.id(prop1.getProperty("Name"))).sendKeys(prop1.getProperty("Name_Value"));
+Thread.sleep(2000);
+
+r1.findElement(By.id(prop1.getProperty("Middle_Name"))).sendKeys(prop1.getProperty("Middle_Name_Value"));
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("Last_Name"))).sendKeys(prop1.getProperty("Last_Name_Value"));
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("Relation_DropDown"))).click();
+Thread.sleep(2000);
+r1.findElement(By.xpath(prop1.getProperty("Relation_Name"))).click();
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("FName"))).sendKeys(prop1.getProperty("Fname_Value"));
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("FMName"))).sendKeys(prop1.getProperty("FMName_Value"));
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("FLName"))).sendKeys(prop1.getProperty("FLName_Value"));
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("Gender"))).click();
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("Qualification"))).click();
+Thread.sleep(2000);
+r1.findElement(By.xpath(prop1.getProperty("Qualification_Value"))).click();
+Thread.sleep(2000);
+r1.findElement(By.xpath(prop1.getProperty("MobileNumber"))).sendKeys(prop1.getProperty("MobileNumber_Value"));
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("dateofbirth"))).sendKeys(prop1.getProperty("dateofbirth_Value"));
+Thread.sleep(4000);
+Scr_for_Script.Screenshots(r1, "Personal Details Page");
+
+////////////Address/////////////////////////
+
+//r1.findElement(By.id(prop1.getProperty("Distric"))).click();
+//Thread.sleep(2000);
+//r1.findElement(By.xpath(prop1.getProperty("Distric_Value"))).click();
+//Thread.sleep(2000);
+r1.findElement(By.xpath(prop1.getProperty("SubDistric"))).click();
+Thread.sleep(3000);
+r1.findElement(By.xpath(prop1.getProperty("SubDistric_Value"))).click();
+Thread.sleep(2000);
+
+r1.findElement(By.id(prop1.getProperty("pincode"))).sendKeys(prop1.getProperty("pincode_Value"));
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("sameaddress"))).click();
+Thread.sleep(4000);
+Scr_for_Script.Screenshots(r1, "Address page");
+
+///////////////////Select Class of vehicles/////////////////////////
+r1.findElement(By.xpath(prop1.getProperty("Covs"))).click();
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("Selected_Covs"))).click();
+Thread.sleep(2000);
+r1.findElement(By.id(prop1.getProperty("submittbutton"))).click();
+Thread.sleep(2000);
+r1.switchTo().alert().accept();
+Thread.sleep(4000);
+Scr_for_Script.Screenshots(r1, "LL Acknowledgement Page");
+
+r1.getTitle();
+
+
+	System.out.println(" Title "+	r1.getTitle());
 			
 			
 			
@@ -101,19 +182,17 @@ public class Test_Execution_Comman_related_method extends Scr_for_Script {
 							
 	}
 	
-public static void LL_Submission() throws IOException, Exception {
-	//WebDriver d = new FirefoxDriver();
-WebDriver d = null;
-	File r=new File("C:\\Users\\USER\\Downloads\\Filehandling.js\\Or.Properties");
-	FileInputStream sr=new FileInputStream(r);
-	Properties prop1=new Properties();
-	prop1.load(sr);
-	WebElement element=d.findElement(By.xpath(prop1.getProperty("State_Name")));
-	
-	Select value=new Select(element);
-	value.selectByValue("Gujarat");
-	d.findElement(By.xpath(prop1.getProperty("name"))).click();
-	
-
-}
+//public static void LL_Submission() throws IOException, Exception {
+//	//WebDriver d = new FirefoxDriver();
+//	WebDriver d = null;
+//	File r=new File("C:\\Users\\USER\\Downloads\\Filehandling.js\\Or.Properties");
+//	FileInputStream sr=new FileInputStream(r);
+//	Properties prop1=new Properties();
+//	prop1.load(sr);
+//    d.get(prop1.getProperty("url1"));
+//	d.findElement(By.xpath(prop1.getProperty("State"))).click();
+//	
+//	
+//
+//}
 }

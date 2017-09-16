@@ -14,10 +14,10 @@ public class CRM_Page extends Test_Execution_Comman_related_method  {
 		
 		System.out.println("CRM PAGE EXCUTION START");
 		
-		///////////////////Login method//////////////////s
+		///////////////////Login method//////////////////
 		CRM_Page.Comman(args);
 		Thread.sleep(3000);
-		CRM_Page.LL_Submission();
+		//CRM_Page.LL_Submission();
 		System.out.println("Application as submitted Successfully");
 //		WebDriver d = null;
 //		///////////////////Proprties file data reader///////////////

@@ -54,8 +54,18 @@ public  class Frame_Work_Library {
 		a1.getRow(0).createCell(2).setCellValue("Action2");
 				
 		a1.getRow(1).createCell(2).setCellValue("New LL_Click");
-		a1.getRow(0).createCell(3).setCellValue("Status");
-
+		
+		a1.getRow(0).createCell(2).setCellValue("Action2");
+		
+		a1.getRow(1).createCell(2).setCellValue("New LL_Click");
+		
+		a1.getRow(0).createCell(3).setCellValue("Action3");
+		a1.getRow(1).createCell(3).setCellValue("Fill Ll Aplication");
+		
+		a1.getRow(0).createCell(4).setCellValue("Action4");
+		a1.getRow(1).createCell(4).setCellValue("Click On Submit Button");
+		
+		a1.getRow(0).createCell(5).setCellValue("Status");
 		FileOutputStream a2=new FileOutputStream(f);
 		a.write(a2);
 		a2.close();
@@ -106,7 +116,7 @@ public  class Frame_Work_Library {
 			
 			//Cell c1=xs.createRow(0).createCell(2);
 		// @SuppressWarnings("unused")
-		Cell c1=xs.getRow(1).createCell(3);
+		Cell c1=xs.getRow(1).createCell(5);
 		 
 			c1.setCellValue("pass");
 			FileOutputStream fos=new FileOutputStream(f);
@@ -125,7 +135,7 @@ public static void xf() throws Throwable {
 			
 			//Cell c1=xs.createRow(0).createCell(2);
 		// @SuppressWarnings("unused")
-		Cell c1=xs.getRow(1).createCell(3);
+		Cell c1=xs.getRow(1).createCell(5);
 		 
 			c1.setCellValue("fail");
 			FileOutputStream fos=new FileOutputStream(f);
